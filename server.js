@@ -10,6 +10,7 @@ const outdoorAdRoutes = require('./routes/api-outdoorAd-routes')
 const typesOfInternetIdRoutes = require('./routes/api-typesOfInternetId-routes')
 const typesOfOutdoorIdRoutes = require('./routes/api-typesOfOutdoorId-routes')
 const roleRoutes = require('./routes/api-role-routes')
+const authRouter = require('./routes/api-authorization-routes')
 
 const PORT = 3000;
 
@@ -27,6 +28,7 @@ app.use(outdoorAdRoutes)
 app.use(typesOfInternetIdRoutes)
 app.use(typesOfOutdoorIdRoutes)
 app.use(roleRoutes)
+app.use(authRouter)
 
 
 //Connect to db

@@ -11,7 +11,7 @@ const { getUsers,
 // Get All Users
 router.get('/api/users', getUsers)
 
-// Add New User
+// Add New User - registration
 router.post('/api/user', addUser)
 
 // Get User by ID
