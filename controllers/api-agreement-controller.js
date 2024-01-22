@@ -6,6 +6,7 @@ const handleError = (res, error) => {
     res.status(500).json({ error })
 }
 
+// Get All Agreements
 const getAgreements = (req, res) => {
     Agreement
         .find({ isDeleted: { $ne: true } })
@@ -16,6 +17,7 @@ const getAgreements = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Get Agreement by ID
 const getAgreement = (req, res) => {
     Agreement
         .findById(req.params.id)
@@ -25,6 +27,23 @@ const getAgreement = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+/**
+ * Add New Agreement
+ * @param {*} req 
+ * @param {*} res 
+ * 
+ * Пример запроса:
+ *  {
+*       "ad_id": "65ad942d45f9093719bf6255",
+        "advertiser_id": "65ad2324a64106ce92aaf72d",
+        "advertising_distributor_id": "65ad23fdc3114e4815dbde36",
+        "date_start": "2024-03-31",
+        "date_finish": "2024-04-10",
+        "finsh_price": 12000,
+        "title": "clubshow"
+    }
+ * 
+ */
 const addAgreement = async (req, res) => {
     try {
         const { ad_id, advertiser_id, advertising_distributor_id } = req.body;
@@ -59,6 +78,7 @@ const addAgreement = async (req, res) => {
     }
 };
 
+// Delete Agreement by ID
 const deleteAgreement = async (req, res) => {
     const currentDate = new Date()
     let username = "username"
@@ -84,6 +104,7 @@ const deleteAgreement = async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
+// Update Agreement by ID
 const updateAgreement = async (req, res) => {
     try {
         const agreement = await Agreement.findById(req.params.id);

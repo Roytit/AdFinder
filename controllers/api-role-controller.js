@@ -1,12 +1,12 @@
-const TypesOfInternetId = require('../models/typesOfInternetId')
+const Role = require('../models/role')
 
 const handleError = (res, error) => {
     res.status(500).json({ error })
 }
 
-// Get All Types Of Internet Id
-const getTypesOfInternetId = (req, res) => {
-    TypesOfInternetId
+// Get All Roles Id
+const getRoles = (req, res) => {
+    Role
         .find({ isDeleted: { $ne: true } })
         .sort({ updatedAt: -1 })
         .then((ad) => {
@@ -15,9 +15,9 @@ const getTypesOfInternetId = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
-// Get Type Of Internet Id by ID
-const getTypeOfInternetId = (req, res) => {
-    TypesOfInternetId
+// Get Role by ID
+const getRole = (req, res) => {
+    Role
         .findById(req.params.id)
         .then((result) => {
             if(!result.isDeleted){
@@ -30,22 +30,20 @@ const getTypeOfInternetId = (req, res) => {
 }
 
 /**
- * Add New Type Of Internet Id
+ * Add New Role
  * @param {*} req 
  * @param {*} res 
  * 
  * Пример запроса:
  *  {
-*       "name: "contextual"
+*       "name: "advertiser"
     }
  * 
  */
-const addTypeOfInternetId = async (req, res) => {
+const addRole = async (req, res) => {
+    const role = new Role(req.body);
 
-
-    const typesOfInternetId = new TypesOfInternetId(req.body);
-
-    typesOfInternetId
+    role
         .save()
         .then((result) => {
             res.status(200).json(result);
@@ -53,18 +51,18 @@ const addTypeOfInternetId = async (req, res) => {
         .catch((err) => handleError(res, err));
 };
 
-// Delete Type Of Internet Id by ID
-const deleteTypeOfInternetId = async (req, res) => {
+// Delete Role by ID
+const deleteRole = async (req, res) => {
     const currentDate = new Date()
     let username = "username"
 
-    await TypesOfInternetId
+    await Role
         .findById(req.params.id)
         .then((type) => {
             if(type.isDeleted == true){
                 handleError(res, "Данный тип интренет-рекламы уже удаленн")
             }else{
-                TypesOfInternetId
+                Role
                     .findByIdAndUpdate(req.params.id, {
                         isDeleted: true,
                         deletedAt: currentDate,
@@ -79,16 +77,16 @@ const deleteTypeOfInternetId = async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
-// Update Type Of Internet Id by ID
-const updateTypeOfInternetId = async (req, res) => {
+// Update Role by ID
+const updateRole = async (req, res) => {
 
-    await TypesOfInternetId
+    await Role
         .findById(req.params.id).exec()
         .then(async (ad) => {
             if(ad.isDeleted == true){
                 handleError(res, "Данный тип рекламы удалён")
             }else{
-                TypesOfInternetId
+                Role
                     .findByIdAndUpdate(req.params.id, req.body, { new: true })
                     .then((result) => {
                             res.status(200).json(result);
@@ -100,9 +98,9 @@ const updateTypeOfInternetId = async (req, res) => {
 }
 
 module.exports = {
-    getTypesOfInternetId,
-    getTypeOfInternetId,
-    addTypeOfInternetId,
-    deleteTypeOfInternetId,
-    updateTypeOfInternetId
+    getRoles,
+    getRole,
+    addRole,
+    deleteRole,
+    updateRole
 }

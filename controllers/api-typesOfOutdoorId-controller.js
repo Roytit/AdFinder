@@ -14,6 +14,7 @@ const getTypesOfOutdoorId = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Get Type Of Outdoor Id by ID
 const getTypeOfOutdoorId = (req, res) => {
     TypesOfOutdoorId
         .findById(req.params.id)
@@ -27,9 +28,19 @@ const getTypeOfOutdoorId = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+
+/**
+ * Add New Type Of Outdoor Id
+ * @param {*} req 
+ * @param {*} res 
+ * 
+ * Пример запроса:
+ *  {
+*       "name: "transit"
+    }
+ * 
+ */
 const addTypeOfOutdoorId = async (req, res) => {
-
-
     const typesOfOutdoorId = new TypesOfOutdoorId(req.body);
 
     typesOfOutdoorId
@@ -40,7 +51,7 @@ const addTypeOfOutdoorId = async (req, res) => {
         .catch((err) => handleError(res, err));
 };
 
-
+// Delete Type Of Outdoor Id by ID
 const deleteTypeOfOutdoorId = async (req, res) => {
     const currentDate = new Date()
     let username = "username"
@@ -66,6 +77,7 @@ const deleteTypeOfOutdoorId = async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
+// Update Type Of Outdoor Id by ID
 const updateTypeOfOutdoorId = async (req, res) => {
 
     await TypesOfOutdoorId

@@ -10,12 +10,16 @@ const { getInternetAds,
 
 // Get All InternetAds
 router.get('/api/internetAds', getInternetAds)
+
 // Add New InternetAd
 router.post('/api/internetAd', addInternetAd)
+
 // Get InternetAd by ID
 router.get('/api/internetAd/:id' , getInternetAd)
+
 // Delete InternetAd by ID
 router.delete('/api/internetAd/:id', deleteInternetAd)
+
 // Update InternetAd by ID
 router.put('/api/internetAd/:id', updateInternetAd)
 

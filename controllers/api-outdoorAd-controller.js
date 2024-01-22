@@ -5,6 +5,7 @@ const handleError = (res, error) => {
     res.status(500).json({ error })
 }
 
+// Get All OutdoorAds
 const getOutdoorAds = (req, res) => {
     OutdoorAd
         .find({ isDeleted: { $ne: true } })
@@ -15,6 +16,7 @@ const getOutdoorAds = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Get OutdoorAd by ID
 const getOutdoorAd = (req, res) => {
     OutdoorAd
         .findById(req.params.id)
@@ -28,6 +30,24 @@ const getOutdoorAd = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+/**
+ * Add New OutdoorAd
+ * @param {*} req 
+ * @param {*} res 
+ * 
+ * Пример запроса:
+ *  {
+*       "width": 130,
+        "height": 40,
+        "address": "Генерала белова дом 8",
+        "type_of_outdoor_ad": "65aeaa45c8a41e705ff3920e",
+        "GPS_X": "55.620703",
+        "GPS_Y": "37.716531",
+        "illumination": false,
+        "condition": "Новая"
+    }
+ * 
+ */
 const addOutdoorAd = async (req, res) => {
     const outdoorAd = new OutdoorAd(req.body);
 
@@ -49,6 +69,7 @@ const addOutdoorAd = async (req, res) => {
         .catch((err) => handleError(res, err));
 }
 
+// Delete OutdoorAd by ID
 const deleteOutdoorAd= async (req, res) => {
     const currentDate = new Date()
     let username = "username"
@@ -74,6 +95,7 @@ const deleteOutdoorAd= async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
+// Update OutdoorAd by ID
 const updateOutdoorAd= async (req, res) => {
 
     const {type_of_outdoor_ad} = req.body

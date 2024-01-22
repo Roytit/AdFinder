@@ -10,12 +10,16 @@ const { getAgreements,
 
 // Get All Agreements
 router.get('/api/agreements', getAgreements)
+
 // Add New Agreement
 router.post('/api/agreement', addAgreement)
+
 // Get Agreement by ID
 router.get('/api/agreement/:id' , getAgreement)
+
 // Delete Agreement by ID
 router.delete('/api/agreement/:id', deleteAgreement)
+
 // Update Agreement by ID
 router.put('/api/agreement/:id', updateAgreement)
 

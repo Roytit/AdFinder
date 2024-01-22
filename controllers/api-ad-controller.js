@@ -5,6 +5,7 @@ const handleError = (res, error) => {
     res.status(500).json({ error })
 }
 
+// Get All Ads
 const getAds = (req, res) => {
     Ad
         .find({ isDeleted: { $ne: true } })
@@ -15,6 +16,7 @@ const getAds = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Get Ad by ID
 const getAd = (req, res) => {
     Ad
         .findById(req.params.id)
@@ -28,9 +30,23 @@ const getAd = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+/**
+ * Add New Ad
+ * @param {*} req 
+ * @param {*} res 
+ * 
+ * Пример запроса:
+ *  {
+*       "price": 3000,
+        "description": "ОООЧень Востребованное место",
+        "internet_ad_id": "65ad8e9263c38156d8dae5a4"
+    }
+ * 
+ */
 const addAd = async (req, res) => {
     const { outdoor_ad_id, internet_ad_id } = req.body;
 
+    //Check to internet ad is exist
     if (internet_ad_id !== undefined) {
         const existInternetAdId = await InternetAd.findById(internet_ad_id);
         if (!existInternetAdId) {
@@ -43,6 +59,7 @@ const addAd = async (req, res) => {
         }
     }
 
+    //Check to outdoor ad is exist
     if (outdoor_ad_id !== undefined) {
         const checkOutdoorId = await Ad.findOne({ outdoor_ad_id });
         if (checkOutdoorId) {
@@ -66,7 +83,7 @@ const addAd = async (req, res) => {
         .catch((err) => handleError(res, err));
 };
 
-
+// Delete Ad by ID
 const deleteAd = async (req, res) => {
     const currentDate = new Date()
     let username = "username"
@@ -92,6 +109,7 @@ const deleteAd = async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
+// Update Ad by ID
 const updateAd = async (req, res) => {
 
     await Ad

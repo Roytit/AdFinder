@@ -1,9 +1,11 @@
 const User = require('../models/user')
+const Role = require('../models/role')
 
 const handleError = (res, error) => {
     res.status(500).json({ error })
 }
 
+// Get All Users 
 const getUsers = (req, res) => {
     User
         .find({ isDeleted: { $ne: true } })
@@ -14,6 +16,7 @@ const getUsers = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Get User by ID
 const getUser = (req, res) => {
     User
         .findById(req.params.id)
@@ -27,8 +30,32 @@ const getUser = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
-const addUser = (req, res) => {
+/**
+ * Add new user
+ * @param {*} req 
+ * @param {*} res 
+ * 
+ * Пример запроса:
+ *  {
+*       "username": "Roytit",
+        "email": "roytitfix2234@gmail.com",
+        "password": "12345",
+        "role": "advertiser",
+        "first_name": "Roman",
+        "last_name": "Kovalev",
+        "phone_number": "+79165187290",
+        "date_of_birth": "2006-01-30"
+    }
+ * 
+ */
+const addUser = async (req, res) => {
     const user = new User(req.body)
+
+    const roleFind = await Role.findById(user.role)
+    if(!roleFind){
+        return handleError(res, "Данная роль не найдена")
+    }
+
     user
         .save()
         .then((result) => {
@@ -37,6 +64,7 @@ const addUser = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Delete User by ID
 const deleteUser = async (req, res) => {
     const currentDate = new Date()
     let username;  
@@ -63,7 +91,15 @@ const deleteUser = async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
+// Update User by ID
 const updateUser = async (req, res) => {
+
+    const user = new User(req.body)
+
+    const roleFind = await Role.findById(user.role)
+    if(!roleFind){
+        return handleError(res, "Данная роль не найдена")
+    }
 
     await User
         .findById(req.params.id).exec()

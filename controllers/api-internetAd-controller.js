@@ -5,6 +5,7 @@ const handleError = (res, error) => {
     res.status(500).json({ error })
 }
 
+// Get All InternetAds
 const getInternetAds = (req, res) => {
     InternetAd
         .find({ isDeleted: { $ne: true } })
@@ -15,6 +16,7 @@ const getInternetAds = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+// Get InternetAd by ID
 const getInternetAd = (req, res) => {
     InternetAd
         .findById(req.params.id)
@@ -28,6 +30,26 @@ const getInternetAd = (req, res) => {
         .catch((err) => handleError(res, err))
 }
 
+/**
+ * Add New InternetAd
+ * @param {*} req 
+ * @param {*} res 
+ * 
+ * Пример запроса:
+ *  {
+*       "width": 130,
+        "height": 40,
+        "max_time": "00-20-00-00", // dd-hh-mm-ss
+        "url": "http://youtube.com",
+        "type_of_internet_ad_id": 2,
+        "video_ad": false,
+        "image_ad": true,
+        "video_duration": "00:00:30",
+        "platform": "youtube",
+        "resolution": "jpg"
+    }
+ * 
+ */
 const addInternetAd = async (req, res) => {
     const internetAd = new InternetAd(req.body);
 
@@ -49,6 +71,7 @@ const addInternetAd = async (req, res) => {
         .catch((err) => handleError(res, err));
 }
 
+// Delete InternetAd by ID
 const deleteInternetAd = async (req, res) => {
     const currentDate = new Date()
     let username = "username"
@@ -74,6 +97,7 @@ const deleteInternetAd = async (req, res) => {
     .catch((err) => handleError(res, err))    
 }
 
+// Update InternetAd by ID
 const updateInternetAd = async (req, res) => {
 
     const {type_of_internet_ad} = req.body
