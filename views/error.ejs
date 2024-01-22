@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs')%>
+</head>
+<body>
+    <div class="header">
+        <h1>Error</h1>
+        <%- include('./partials/nav.ejs')%>
+    </div>
+</body>
+<style>
+    div{
+        display: flex;
+        justify-content: space-between;
+        width: 1300px;
+        margin: 0 auto;
+        align-items: center;
+        background-color: rgb(114, 235, 106);
+        padding: 10px 30px;
+    }
+    ul{
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+        list-style-type: none;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    a{
+        text-decoration: none;
+        color: #000000;
+        transition: .3s linear;
+    }
+    a:hover{
+        color: #565656
+    }
+</style>
+</html>
