@@ -45,5 +45,4 @@ jobs:
       - name: Check code formatting
         run: |
           npm install -g editorconfig-checker
-          editorconfig-checker
           editorconfig-checker --exclude "node_modules/**"
