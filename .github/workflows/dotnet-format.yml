@@ -21,11 +21,13 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies and build
+        run: |
+            npm install
+            npm build        
 
-      - name: Build and start server
-        run: npm run dev
+      - name: Start server
+        run: npm run dev --production
 
   format-check:
     runs-on: ubuntu-latest
