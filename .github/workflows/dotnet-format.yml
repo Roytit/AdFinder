@@ -1,12 +1,9 @@
-name: dotnet-format
+name: Build and Format Check
 
 on:
-    push:
-      branches:
-        - master
-    pull_request:
-      branches:
-        - master
+  push:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -19,15 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.10.0'
+          node-version: '14'
 
-      - name: Install dependencies and build
-        run: |
-            npm install
-            npm run build       
+      - name: Install dependencies
+        run: npm install
 
-      - name: Start server
-        run: npm run dev --production 
+      - name: Build project
+        run: npm run build
 
   format-check:
     runs-on: ubuntu-latest
@@ -44,7 +39,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Check code formatting
-        run: |
-          npm install -g editorconfig-checker
-          editorconfig-checker --exclude "node_modules/**"
+      - name: Check code formatting with EditorConfig
+        run: npx editorconfig-checker --exclude "node_modules/**"
