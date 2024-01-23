@@ -46,3 +46,4 @@ jobs:
         run: |
           npm install -g editorconfig-checker
           editorconfig-checker
+          editorconfig-checker --exclude "node_modules/**"
