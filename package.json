@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Roytit/AdFinderAPI#readme",
   "devDependencies": {
+    "editorconfig-checker": "^5.1.2",
     "nodemon": "^3.0.3"
   },
   "dependencies": {
