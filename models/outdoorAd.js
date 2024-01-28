@@ -12,19 +12,15 @@ const outdoorAd = new Schema({
     },
     address: {
         type: String,
-        required: true
     },
     type_of_outdoor_ad: {
         type: String,
-        required: true
     },
     GPS_X: {
         type: String,
-        required: true
     },
     GPS_Y: {
         type: String,
-        required: true
     },
     illumination: {
         type: Boolean,

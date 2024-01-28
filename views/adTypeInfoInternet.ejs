@@ -1,0 +1,84 @@
+<div class="form_info typeOfInternetAd">
+    <label class="label-typeOfAd">Какой тип вашей интернет-рекламы</label>
+    <select class="form-select form__select-type" name="adType" >
+        <option selected>Выбрать</option>
+        <option value="internet">баннер</option>
+        <option value="outdoor">соц.сеть</option>
+        <option value="internet">видео-реклама</option>
+        <option value="outdoor">мобильное приложение</option>
+        <option value="internet">контекстная</option>
+    </select>
+</div>
+
+<div class="form__row">
+    <div class="form_info form_info-width-height">
+        <label class="form-label">Ширина</label>
+        <div class="input-group mb-3 internet-width-height">
+            <input type="text" class="form-control" name="width">
+            <span class="input-group-text px-width-height">px</span>
+        </div>
+    </div>
+    
+    <div class="form_info form_info-width-height">
+        <label class="form-label">Высота</label>
+        <div class="input-group mb-3 internet-width-height">
+            <input type="text" class="form-control" name="height">
+            <span class="input-group-text px-width-height">px</span>
+        </div>
+    </div>
+
+    <div class="form_info">
+        <label class="form-label">Максимальное время размещения</label>
+        <div class="input-group mb-3 internet-max-time">
+            <input type="text" class="form-control" name="max-time" placeholder="dd-hh-mm-ss">
+        </div>
+    </div>
+</div>
+
+<div class="form__row">
+    <div class="form_info">
+        <label class="form-label">Платформа</label>
+        <div class="input-group mb-3 internet-platform">
+            <input type="text" class="form-control" name="platform" placeholder="youtube">
+        </div>
+    </div>
+    <div class="form_info">
+        <label class="form-label">Ссылка на ресурс</label>
+        <div class="input-group mb-3 internet-url">
+            <input type="text" class="form-control" name="url" placeholder="http://youtube.com">
+        </div>
+    </div>
+    
+</div>
+
+<div class="form__row">
+    <div class="form_info">
+        <label class="label-video">Возможно ли видео</label>
+        <select class="form-select form__select-video" name="ad_video" id="ad_video">
+            <option selected>Выбрать</option>
+            <option value="да">да</option>
+            <option value="нет">нет</option>
+        </select>
+    </div>
+    <div class="form_info">
+        <label class="form-label">Длительность видео</label>
+        <div class="input-group mb-3 duration-url">
+            <input type="text" class="form-control" name="video_duration" placeholder="hh-mm-ss">
+        </div>
+    </div>
+    
+</div>
+<div class="form_info image-select">
+    <label class="label-image">Возможно ли изображение</label>
+    <select class="form-select form__select-image" name="ad_image">
+        <option selected>Выбрать</option>
+        <option value="да">да</option>
+        <option value="нет">нет</option>
+    </select>
+</div>
+<div class="form_info">
+    <label class="form-label">Расширения</label>
+    <div class="input-group mb-3 duration-url">
+        <input type="text" class="form-control" name="resolution" placeholder="jpeg, png, mp4">
+    </div>
+</div>

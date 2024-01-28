@@ -1,0 +1,33 @@
+
+
+.internet-width-height{
+    width: 180px;
+}
+
+.px-width-height{
+    width: 50px;    
+}
+
+.internet-max-time{
+    width: 100%;
+}
+
+.form__row{
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    width: 100%;
+}
+
+.duration-url{
+    width: 180px;
+}
+
+.form-label,
+.label-typeOfAd {
+    margin: 0;
+}
+
+.image-select{
+    width: 280px;
+}

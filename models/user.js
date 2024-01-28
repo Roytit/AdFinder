@@ -8,7 +8,6 @@ const userScheme = new Schema({
     },
     email: {
         type: String,
-        required: true,
     },
     password: {
         type: String,
@@ -22,23 +21,18 @@ const userScheme = new Schema({
     },
     role: {
         type: String,
-        required: true,
     },
     first_name: {
         type: String,
-        required: true,
     },
     last_name: {
         type: String,
-        required: true,
     },
     phone_number: {
         type: String,
-        required: true,
     },
     date_of_birth: {
         type: Date,
-        required: true,
     },
     createdBy: {
         type: String,

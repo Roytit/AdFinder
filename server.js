@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
-
+const methodOverride = require('method-override')
+const createPath = require('./helpers/create-path')
 
 // Import routes
 const userRoutes = require('./routes/api-user-routes')
@@ -11,7 +12,8 @@ const outdoorAdRoutes = require('./routes/api-outdoorAd-routes')
 const typesOfInternetIdRoutes = require('./routes/api-typesOfInternetId-routes')
 const typesOfOutdoorIdRoutes = require('./routes/api-typesOfOutdoorId-routes')
 const roleRoutes = require('./routes/api-role-routes')
-const authRouter = require('./routes/api-authorization-routes')
+const userRouter = require('./routes/user-routes')
+const adsRouter = require('./routes/ads-routes')
 
 const PORT = 3000;
 
@@ -19,6 +21,14 @@ const PORT = 3000;
 const URL = 'mongodb://localhost:27017/adFinder';
 
 const app = express()
+
+app.set('view engine', 'ejs')
+
+app.use(express.urlencoded({extended: false}))
+
+app.use(express.static('styles'))
+
+app.use(methodOverride('_method'))
 
 app.use(express.json())
 app.use(userRoutes)
@@ -29,8 +39,12 @@ app.use(outdoorAdRoutes)
 app.use(typesOfInternetIdRoutes)
 app.use(typesOfOutdoorIdRoutes)
 app.use(roleRoutes)
-app.use(authRouter)
+app.use(userRouter)
+app.use(adsRouter)
 
+app.get('/' , (req, res) => {
+    res.render(createPath('index'))
+})
 
 //Connect to db
 mongoose

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<link rel="stylesheet" href="../add.css">
+<link rel="stylesheet" href="../adTypeInfoInternet.css">
+<body>
+    <%- include('./partials/header.ejs') %>
+    <div class="form">
+        <div class="container">
+            <form action="/add" method="post">
+                <div class="form_info">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Заголовок</label>
+                        <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Реклама на электробусе">
+                    </div>
+                </div>
+                <div class="form-info">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Описание размещения вашей рекламы</label>
+                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form__price-select">
+                    <div class="form-info">
+                        <div class="form__price">
+                            <label class="form-label label-price">Стоимость</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="price">
+                                <span class="input-group-text">.00</span>
+                                <span class="input-group-text">руб</span>
+                            </div>     
+                        </div>
+                    </div>
+                    <div class="form_info">
+                        <label class="label-typeOfAd">Какой тип вашей рекламы</label>
+                        <select class="form-select form__select-type" aria-label="Default select example" name="adType" id="adType" onchange="loadAdTypeInfo()">
+                            <option selected>Выбрать</option>
+                            <option value="internet">интернет</option>
+                            <option value="outdoor">наружная</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="adTypeInfo"></div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary add-button">Отправить</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function loadAdTypeInfo() {
+        var adType = document.getElementById('adType').value;
+        var adTypeInfo = document.getElementById('adTypeInfo');
+
+        // Отправка AJAX-запроса
+        fetch('/getAdTypeInfo?type=' + adType)
+            .then(response => response.text())
+            .then(html => {
+                adTypeInfo.innerHTML = html;
+            })
+            .catch(error => console.error('Ошибка:', error));
+}
+    </script>
+    
+</body>
+</html>

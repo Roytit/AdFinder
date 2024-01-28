@@ -8,16 +8,22 @@ const adScheme = new Schema({
     },
     description: {
         type: String,
-        required: true,
     },
     internet_ad_id:{
         type: String,
     },
     outdoor_ad_id:{
-        type: Number,
+        type: String,
     },
     examples_img:{
         type: String,
+    },
+    owner: {
+        type: String,
+    },
+    title:{
+        type: String,
+        required: true
     },
     createdBy: {
         type: String,

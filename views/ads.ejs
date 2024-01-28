@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+<link rel="stylesheet" href="../ads.css">
+<body>
+    <%- include('./partials/header.ejs')%>
+    <div class="container grid">
+        <% if (ads.length) { %>
+            <% ads.forEach(({ id, price, title, description, owner, url }) => { %>
+                <div class="card col">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= title %></h5>
+                        <p class="card-text"><%= truncateDescription(description, url) %></p>
+                        <% if(url) { %>
+                            <p class="card-text"><a href="<%= url %>" class="description-link"><%= url %></a></p>
+                        <%} %>
+                        <div class="footer">
+                            <p class="card-text price"><%= price %> рублей</p>
+                            <a href="/ads/<%= id %>" class="btn btn-primary">Перейти</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+
+    <% function truncateDescription(description, url) { %>
+        <% if(description) { %>
+            <% const words = description.split(' '); %>
+            <% let truncated; %>
+            <% if(url) { %>
+                <% truncated = words.slice(0, 30).join(' '); %>
+            <% } else { %>
+                <% truncated = words.slice(0, 40).join(' '); %>
+            <% } %>
+            <%= `${truncated}...` %>
+        <% } else { %>
+            <%= '' %>
+        <% } %>
+    <% } %>
+
+</body>
+</html>

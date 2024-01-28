@@ -1,0 +1,54 @@
+.container{
+    width: 1200px;
+    padding: 0;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.card {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensure the card-body takes up 100% height of the parent .card */
+}
+
+.row{
+    display: flex;
+}
+
+li{
+    list-style: none;
+}
+
+.ad__link-title{
+    text-decoration: none;
+}
+
+.description-link{
+    font-size: 16px;
+    color: #0d6efd;
+    margin-top: auto;
+}
+
+.price{
+    font-size: 24px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+
+    margin-top: auto;
+    margin: 0;
+}

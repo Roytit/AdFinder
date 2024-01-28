@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')%>
+<link rel="stylesheet" href="../ad.css">
+<body>
+    <%- include('./partials/header.ejs')%>
+    <div class="ad">
+        <div class="container">
+            <div class="ad__inner">
+                <div class="ad__header">
+                    <div class="ad__title"><%= adAllInfo.ad.title %></div>
+                    <div class="ad_price"><%= adAllInfo.ad.price %> рублей</div>
+                </div>
+                <div class="ad__owner">Владелец: <%= adAllInfo.user.username %></div>
+                <div class="ad__description"><%= adAllInfo.ad.description %></div>
+                <div class="ad__info">
+                    <p class="ad__info-main-text">Дополнительная информация:</p>
+                    <% if (adAllInfo.ad.internet_ad_id) { %>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Ширина: </span>
+                            <span class="ad__info-content"><%= adAllInfo.internet_ad.width %> px</span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Высота: </span>
+                            <span class="ad__info-content"><%= adAllInfo.internet_ad.height %> px</span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Максимальное время размещения: </span>
+                            <span class="ad__info-content">
+                                <% 
+                                    const maxTime = adAllInfo.internet_ad.max_time;
+                                    const timeArray = maxTime.split('-');
+                                    const days = parseInt(timeArray[0]);
+                                    const hours = parseInt(timeArray[1]);
+                                    const minutes = parseInt(timeArray[2]);
+                                    const seconds = parseInt(timeArray[3]);
+                                    %>
+                                    <span>Дни: <%= days %></span>
+                                    <span>Часы: <%= hours %></span>
+                                    <span>Минуты: <%= minutes %></span>
+                                    <span>Секунды: <%= seconds %></span>
+                            </span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Тип рекламы: </span>
+                            <span class="ad__info-content"><%= adAllInfo.type_of_internet_ad.name %></span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Ссылка на сайт: </span>
+                            <span class="ad__info-content"><a href="<%= adAllInfo.internet_ad.url %>" class="ad_url-link"><%= adAllInfo.internet_ad.url %></a></span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Можно видео: </span>
+                            <span class="ad__info-content"><%= adAllInfo.internet_ad.video_ad %></span>
+                        </div>
+                        <% if(adAllInfo.internet_ad.video_ad) { %>
+                            <div class="ad__info-property">
+                                <span class="ad__info-text">Длительность видео: </span>
+                                <span class="ad__info-content">
+                                    <% if(adAllInfo.internet_ad.video_duration) { %>
+                                        <%= adAllInfo.internet_ad.video_duration %>
+                                    <%}else{%>
+                                        не указано  
+                                    <%} %>
+                                </span>
+                            </div>
+                        <%} %>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Можно изображение: </span>
+                            <span class="ad__info-content"><%= adAllInfo.internet_ad.image_ad %></span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Допускаемое разрешение: </span>
+                            <span class="ad__info-content">
+                                <% if(adAllInfo.internet_ad.resolution) { %>
+                                    <%= adAllInfo.internet_ad.resolution %>
+                                <%}else{%>
+                                    любое   
+                                <%} %>
+                                
+                            </span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Платформа: </span>
+                            <span class="ad__info-content"><%= adAllInfo.internet_ad.platform %></span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Целевая аудитория: </span>
+                            <span class="ad__info-content">
+                                <% if(adAllInfo.internet_ad.target_audience) { %>
+                                    <%= adAllInfo.internet_ad.target_audience %>
+                                <%}else{%>
+                                    не указано  
+                                <%} %>
+                            </span>
+                        </div>
+                        <% if(adAllInfo.internet_ad.position) { %>
+                            <div class="ad__info-property">
+                                <span class="ad__info-text">Позиция: </span>
+                                <span class="ad__info-content">
+                                    <% if(adAllInfo.internet_ad.position) { %>
+                                        <%= adAllInfo.internet_ad.position %>
+                                    <%}else{%>
+                                        не указано  
+                                    <%} %>
+                                </span>
+                            </div>
+                        <%} %>
+                    <%}else{ %>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Ширина: </span>
+                            <span class="ad__info-content"><%= adAllInfo.outdoor_ad.width %> см</span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Высота: </span>
+                            <span class="ad__info-content"><%= adAllInfo.outdoor_ad.height %> см</span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Тип рекламы: </span>
+                            <span class="ad__info-content"><%= adAllInfo.type_of_outdoor_ad.name %></span>
+                        </div>
+                        <% if(adAllInfo.outdoor_ad.address) { %>
+                            <div class="ad__info-property">
+                                <span class="ad__info-text">Адрес: </span>
+                                <span class="ad__info-content"><%= adAllInfo.outdoor_ad.address %></span>
+                            </div>
+                            <div class="ad__info-property">
+                                <span class="ad__info-text">Координаты: </span>
+                                <span class="ad__info-content"><%= adAllInfo.outdoor_ad.GPS_X %> <%= adAllInfo.outdoor_ad.GPS_Y %></span>
+                            </div>
+                        <%} %>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Подсветка: </span>
+                            <span class="ad__info-content"><%= adAllInfo.outdoor_ad.illumination %></span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Вид: </span>
+                            <span class="ad__info-content"><%= adAllInfo.outdoor_ad.condition %></span>
+                        </div>
+                        <div class="ad__info-property">
+                            <span class="ad__info-text">Материал: </span>
+                            <span class="ad__info-content">
+                                <% if(adAllInfo.outdoor_ad.material) { %>
+                                    <%= adAllInfo.outdoor_ad.material %>
+                                <%}else{%>
+                                    не указано  
+                                <%} %>
+                            </span>
+                        </div>
+                    <%} %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

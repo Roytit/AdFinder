@@ -17,28 +17,26 @@ const internetAd = new Schema({
     },
     url: {
         type: String,
-        required: true
+
     },
     type_of_internet_ad: {
         type: String,
-        required: true
+
     },
     video_ad: {
         type: Boolean,
-        required: true,
+
     },
     image_ad: {
         type: Boolean,
-        required: true,
+
     },
     resolution: {
         type: String,
-        required: true,
+
     },
     video_duration: {
         type: String, 
-        default: "00:00:00", 
-        required: true
     },
     platform: {
         type: String,
